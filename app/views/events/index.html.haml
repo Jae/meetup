@@ -1,2 +1,20 @@
--if current_session
-  Hi #{current_session.user.email}
+.container
+  %h3 Events
+  - if @preference
+    .row
+      .col-md-12
+        .well.well-sm
+          = form_tag(user_preferences_path(@preference.user), method: :post) do
+            %label{for: "city"} City
+            %input{type: "text", name: "preference[city]", value: @preference.city}
+            %label{for: "topic"} Topic
+            %input{type: "text", name: "preference[topic]", value: @preference.topic}
+            %label{for: "start_times_from"} Starts between
+            %input{type: "datetime-local", name: "preference[start_times_from]", value: @preference.start_times_from}
+            %label{for: "start_times_to"} and
+            %input{type: "datetime-local", name: "preference[start_times_to]", value: @preference.start_times_to}
+            %input{type: "submit", value: "filter"}
+
+  .row
+    .col-md-12
+      = render @events

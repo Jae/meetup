@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %meta{ :content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type" }
+    %title Meetup
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body{ class: ("authenticated" if current_session) }
+    %nav.navbar.navbar-default{ role: 'navigation' }
+      .container
+        .navbar-header
+          %a.navbar-brand{ href: root_path } Meetup
+        - if current_session
+          %p.navbar-text.navbar-right
+            Welcome back,
+            %span= current_session.user.email
+            = link_to session_path, method: :delete do
+              Log out
+        - else
+          %a.navbar-right.btn.navbar-btn{ href: '/auth/developer' }
+            Log in to filter events by preference
+    .container
+      .row
+        .col-md-12
+          - flash.each do |_, item|
+            .alert{ class: ["alert-#{item["class"]}"] }= item["message"]
+
+    = yield
