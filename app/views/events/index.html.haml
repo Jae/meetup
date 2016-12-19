@@ -1,1 +1,2 @@
-Hi #{current_session.user.email}
+-if current_session
+  Hi #{current_session.user.email}
