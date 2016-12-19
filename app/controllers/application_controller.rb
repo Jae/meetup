@@ -3,14 +3,16 @@ class ApplicationController < ActionController::Base
   helper_method :current_session
 
   def login(current_session)
-    session[:token] = current_session.token
+    @current_session = current_session
+    cookies.encrypted[:session] = session[:token] = current_session.token
   end
 
   def logout
-    session[:token] = nil
+    current_session.destroy! if current_session
+    @current_session = cookies.encrypted[:session] = session[:token] = nil
   end
 
   def current_session
-    @current_session ||= session[:token] && Session.find_by(token: session[:token])
+    @current_session ||= session[:token] && Session.eager_load(:user).find_by(token: session[:token])
   end
 end

@@ -8,7 +8,7 @@ RSpec.describe NotifyNewEventJob, type: :job do
     event = instance_double(Event)
     preference = Preference.new(user: user)
     expect(Preference).to receive(:find_by_event).with(event).and_return([preference])
-    expect(NotificationMailer).not_to receive(:new_event)
+    expect(NewEventNotificationChannel).to receive(:broadcast_to).with(user, event)
 
     NotifyNewEventJob.perform_now(event)
   end

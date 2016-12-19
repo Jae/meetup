@@ -5,7 +5,7 @@ class NotifyNewEventJob < ApplicationJob
     Preference.find_by_event(event).each do |preference|
       preference.user.tap do |user|
         if user.logged_in?
-          
+          NewEventNotificationChannel.broadcast_to(user, event)
         else
           NotificationMailer.new_event(user, event).deliver_later
         end
