@@ -13,7 +13,7 @@ App.cable.subscriptions.create(
             ).append(
               " from " + event.start_time
             ).append(
-              event.end_time && (" to " + event.end_time) || ""
+              event.end_time && (" until " + event.end_time) || ""
             ).append(
               " about " + event.topics)
           )

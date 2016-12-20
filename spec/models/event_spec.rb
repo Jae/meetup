@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe Event, :type => :model do
   it "Events are found by preference" do
     event = Event.create!(title: "title",
+                          address: "address",
                           city: "city",
                           start_time: Time.now,
                           end_time: Time.now + 1.hour,

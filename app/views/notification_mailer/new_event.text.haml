@@ -1,3 +1,6 @@
-There's new event '#{@event.title}' in #{@event.city}.
+There's new event '#{@event.title}' at #{@event.address} in #{@event.city}.
 
-Would you be able to attend from #{@event.start_time} to #{@event.end_time} to discuss about #{@event.topics.join(", ")}?
+Would you be able to attend from #{@event.start_time}
+-if @event.end_time
+  until #{@event.end_time}
+to discuss about #{@event.topics.join(", ")}?

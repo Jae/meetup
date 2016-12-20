@@ -7,6 +7,7 @@ RSpec.describe Preference, :type => :model do
                                     start_times: (Time.now..Time.now + 1.hour),
                                     topic: "topic-one")
     event = Event.create!(title: "title",
+                          address: "address",
                           city: preference.city,
                           start_time: preference.start_times.first + 30.minutes,
                           end_time: preference.start_times.last + 30.minutes,
