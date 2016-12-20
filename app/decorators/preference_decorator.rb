@@ -1,14 +1,14 @@
 class PreferenceDecorator < SimpleDelegator
   def start_times_from
-    format(start_times.try(:first))
+    format_time(start_times.try(:first))
   end
 
   def start_times_to
-    format(start_times.try(:last))
+    format_time(start_times.try(:last))
   end
 
   private
-  def format(time)
+  def format_time(time)
     time.try(:strftime, "%Y-%m-%dT%H:%M:%S")
   end
 end

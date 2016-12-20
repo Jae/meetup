@@ -1,6 +1,8 @@
 .panel.panel-default
-  .panel-body.events
+  .panel-body
     %p
-      #{event.title} at somewhere in #{event.city}
-      from #{event.start_time} to #{event.end_time}
+      #{event.title} at #{event.address} in #{event.city}
+      from #{event.start_time}
+      -if event.end_time
+        to #{event.end_time}
       about #{event.topics.join(", ")}

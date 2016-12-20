@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 20161215082820) do
 
   create_table "events", force: :cascade do |t|
     t.text     "title",                   null: false
+    t.text     "address",                 null: false
     t.text     "city",                    null: false
     t.datetime "start_time",              null: false
-    t.datetime "end_time",                null: false
+    t.datetime "end_time"
     t.text     "topics",     default: [],              array: true
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false

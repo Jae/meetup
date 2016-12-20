@@ -3,10 +3,11 @@ class NewEventNotificationChannel < ApplicationCable::Channel
     event = EventDecorator.new(event)
     super(user, {
       title: event.title,
+      address: event.address,
       city: event.city,
       start_time: event.start_time,
       end_time: event.end_time,
-      topics: event.topics
+      topics: event.topics.join(", ")
     })
   end
 

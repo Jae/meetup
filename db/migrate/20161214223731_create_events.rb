@@ -2,9 +2,10 @@ class CreateEvents < ActiveRecord::Migration[5.0]
   def change
     create_table :events do |t|
       t.text :title, null: false
+      t.text :address, null: false
       t.text :city, null: false
       t.timestamp :start_time, null: false
-      t.timestamp :end_time, null: false
+      t.timestamp :end_time
       t.text :topics, array: true, default: []
       t.timestamps
     end
