@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_session
+  helper_method :authenticated?, :current_session, :current_user
 
   def login(current_session)
     @current_session = current_session
@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
   def logout
     current_session.destroy! if current_session
     @current_session = cookies.encrypted[:session] = session[:token] = nil
+  end
+
+  def authenticated?
+    !current_session.nil?
+  end
+
+  def current_user
+    current_session.try(:user)
   end
 
   def current_session

@@ -6,13 +6,13 @@
         .well.well-sm
           = form_tag(user_preferences_path(@preference.user), method: :post) do
             %label{for: "city"} City
-            %input{type: "text", name: "preference[city]", value: @preference.city}
+            %input{type: "text", name: "preference[city]", value: @preference.city, required: true}
             %label{for: "topic"} Topic
-            %input{type: "text", name: "preference[topic]", value: @preference.topic}
+            %input{type: "text", name: "preference[topic]", value: @preference.topic, required: true}
             %label{for: "start_times_from"} Starts between
-            %input{type: "datetime-local", name: "preference[start_times_from]", value: @preference.start_times_from}
+            %input{type: "datetime-local", name: "preference[start_times_from]", value: @preference.start_times_from, required: true}
             %label{for: "start_times_to"} and
-            %input{type: "datetime-local", name: "preference[start_times_to]", value: @preference.start_times_to}
+            %input{type: "datetime-local", name: "preference[start_times_to]", value: @preference.start_times_to, required: true}
             %input{type: "submit", value: "filter"}
 
   .row

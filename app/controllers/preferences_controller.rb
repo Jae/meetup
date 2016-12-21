@@ -1,10 +1,10 @@
 class PreferencesController < ApplicationController
   def create
-    if current_session && current_session.user.id.to_s == preference_params[:user_id]
-      if current_session.user.preference
-        current_session.user.preference.update_attributes(preference_params)
+    if authenticated? && current_user.id.to_s == params[:user_id]
+      if current_user.preference
+        current_user.preference.update_attributes(preference_params)
       else
-        current_session.user.create_preference(preference_params)
+        current_user.create_preference(preference_params)
       end
     end
     redirect_to events_path

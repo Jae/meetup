@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    if current_session
+    if authenticated?
       if @preference = current_preference
         @events = events(Event.find_by_preference(@preference))
       else
@@ -14,11 +14,11 @@ class EventsController < ApplicationController
 
   private
   def current_preference
-    current_session && current_session.user.preference && PreferenceDecorator.new(current_session.user.preference)
+    current_user.preference && PreferenceDecorator.new(current_user.preference)
   end
 
   def new_preference
-    current_session && PreferenceDecorator.new(current_session.user.build_preference)
+    PreferenceDecorator.new(current_user.build_preference)
   end
 
   def events(events)
